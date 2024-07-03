@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  atomic_hack_server:
+  swagger_provider_server:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,8 +9,8 @@ services:
     ports:
       - "5014:5000"
     networks:
-      - atomic_hack_network
+      - swagger_provider_network
 
 networks:
-  atomic_hack_network:
+  swagger_provider_network:
     driver: bridge
