@@ -1,0 +1,11 @@
+.user {
+    display: block;
+    width: 100%;
+    padding: var(--mantine-spacing-md) !important;
+    color: var(--mantine-color-dark-0);
+    height: 100%;
+}
+
+.user:hover {
+    background-color: var(--color-gray-300);
+}

@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+}
+
+.emojiPicker {
+    position: absolute;
+    z-index: 1000;
+}
+
+.input {
+    cursor: pointer;
+}

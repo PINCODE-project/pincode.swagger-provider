@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  atomic_hack_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5014:5000"
+    networks:
+      - atomic_hack_network
+
+networks:
+  atomic_hack_network:
+    driver: bridge
