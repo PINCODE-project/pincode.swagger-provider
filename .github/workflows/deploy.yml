@@ -23,6 +23,10 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
           cd pincode.swagger-provider &&
           git pull &&
-          cd backend &&
-          sudo docker-compose up -d --build
+          if git diff --quiet HEAD^ HEAD -- backend; then
+            echo "No changes in the backend directory. Skipping build."
+          else
+            cd backend &&
+            sudo docker-compose up -d --build
+          fi
         '
