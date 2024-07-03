@@ -1,5 +1,5 @@
 export class ConfigService {
-    static HOST = 'http://localhost:5000'
+    static HOST = 'https://pincode-dev.ru/swagger-provider'
     static API = `${this.HOST}/api`
     static STATIC = `${this.API}/static`
 
