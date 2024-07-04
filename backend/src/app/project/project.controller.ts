@@ -1,8 +1,7 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, UseGuards} from '@nestjs/common';
 import {ProjectService} from './project.service';
 import {CreateProjectDto} from './dto/create-project.dto';
-import {UpdateProjectDto} from './dto/update-project.dto';
-import {ApiBearerAuth, ApiOkResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
+import {ApiBearerAuth, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {RemoveProjectDto} from "./dto/remove-project.dto";
 import {JwtAuthGuard} from "../auth/guards/jwt-auth.guard";
 import {getBadRequestErrors, getUnauthorizedError} from "../utils/getErrors";
