@@ -1,4 +1,4 @@
-import {Card, Center, Container, Loader, Text, SimpleGrid, Title, Group} from '@mantine/core';
+import {Card, Center, Container, Loader, Text, SimpleGrid, Title, Group, Space} from '@mantine/core';
 import {useUser} from "../../../../hooks/useUser";
 import {notifications} from "@mantine/notifications";
 import {useProjects} from "../../../../hooks/useProjects";
@@ -16,16 +16,19 @@ export function ProjectsPage() {
     const {user, isLoading: isLoadingUser} = useUser()
 
     if (isLoadingProjects || isLoadingUser)
-        return <Center>
+        return <Center p='xl'>
             <Loader color='gray'/>
         </Center>
 
     return (
         <div className={styles.projectsPage}>
-            <Container size="xl" m='md' gap='20px'>
+            <Container size="xl" m='md' gap='20px' p='xl'>
                 <Title ta='center'>
                     {user.firstName}, рады вас видеть! 😀
                 </Title>
+                <Space h="xl"/>
+                <Title order={3}>Проекты</Title>
+                <Space h="md"/>
                 <SimpleGrid cols={4}>
                     {projects.map(project => {
                         return <Card

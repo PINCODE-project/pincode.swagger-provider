@@ -58,6 +58,12 @@ export class ProjectService {
                     createdAt: true,
                     updatedAt: true
                 },
+            },
+            order: {
+                createdAt: 'asc',
+                microservices: {
+                    createdAt: 'asc'
+                }
             }
         });
     }
