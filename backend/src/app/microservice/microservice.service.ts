@@ -8,7 +8,6 @@ import {ProjectService} from '../project/project.service';
 import {GetAllMicroservicesDto} from './dto/get-all-microservices.dto';
 import {GetMicroserviceDto} from "./dto/get-microservice.dto";
 import axios from "axios";
-import {RemoveProjectDto} from "../project/dto/remove-project.dto";
 import {RemoveMicroserviceDto} from "./dto/remove-microservice.dto";
 
 @Injectable()
@@ -79,7 +78,7 @@ export class MicroserviceService {
             }
         });
 
-        const servers= microservice.servers.map((server) => ({url: server.url, description: server.description}));
+        const servers = microservice.servers.map((server) => ({url: server.url, description: server.description}));
 
         if (microservice.type === MicroserviceType.URL) {
             try {
@@ -91,8 +90,14 @@ export class MicroserviceService {
                 });
                 response.data.servers = servers
                 microservice.content = response.data;
+                await this.microserviceRepository.update(microservice.id, {
+                    cache: response.data
+                })
             } catch (error) {
-                microservice.content = error.message;
+                if (microservice.cache)
+                    microservice.content = microservice.cache;
+                else
+                    microservice.content = error.message;
             }
         } else {
             const content = JSON.parse(microservice.content)

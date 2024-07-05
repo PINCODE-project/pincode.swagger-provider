@@ -35,6 +35,10 @@ export class Microservice {
     content: string;
 
     @ApiProperty()
+    @Column({type: 'text', nullable: true})
+    cache: string;
+
+    @ApiProperty()
     @CreateDateColumn()
     createdAt: Date;
 
