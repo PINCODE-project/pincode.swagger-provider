@@ -8,6 +8,7 @@ import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
 import 'swagger-ui-react/swagger-ui.css'
 import './App.css';
+import './swagger.css';
 import './themes/variables.css'
 
 export default function MyApp() {
@@ -24,7 +25,7 @@ export default function MyApp() {
                     <BrowserRouter>
                         <RootRouter/>
                         <Notifications/>
-                        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+                        <ReactQueryDevtools initialIsOpen={false} />
                     </BrowserRouter>
                 </MantineProvider>
             </QueryClientProvider>
