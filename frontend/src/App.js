@@ -25,7 +25,7 @@ export default function MyApp() {
                     <BrowserRouter>
                         <RootRouter/>
                         <Notifications/>
-                        <ReactQueryDevtools initialIsOpen={false} />
+                        {/*<ReactQueryDevtools initialIsOpen={false} />*/}
                     </BrowserRouter>
                 </MantineProvider>
             </QueryClientProvider>
