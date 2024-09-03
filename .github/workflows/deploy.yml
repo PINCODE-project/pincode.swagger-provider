@@ -1,9 +1,11 @@
-name: CI/CD Pipeline for swagger-provider
+name: CI/CD Pipeline for swagger-provider on CatDev
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**'
 
 jobs:
   build:
@@ -16,17 +18,13 @@ jobs:
     - name: Set up SSH
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_CATDEV }}
 
     - name: Deploy to Server
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST_CATDEV }} '
           cd pincode.swagger-provider &&
           git pull &&
-          if git diff --quiet HEAD^ HEAD -- backend; then
-            echo "No changes in the backend directory. Skipping build."
-          else
-            cd backend &&
-            sudo docker-compose up -d --build
-          fi
+          cd backend &&
+          sudo docker compose up -d --build
         '
