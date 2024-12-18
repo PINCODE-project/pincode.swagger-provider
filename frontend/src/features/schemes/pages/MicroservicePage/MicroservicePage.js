@@ -17,7 +17,42 @@ export function MicroservicePage() {
         <div>
             {
                 isSuccess &&
-                <SwaggerUI spec={microservice.content}/>
+                <SwaggerUI spec={microservice.content} plugins={[
+                    (system) => ({
+                        wrapComponents: {
+                            OperationSummaryPath: (Original, system) => (props) => {
+                                return <span style={{display: "flex"}}>
+                                    Солнце
+                                    <Original {...{
+                                        ...props,
+                                        specPath: {...props.specPath, _tail: ["paths", "hui", "post"]}
+                                    }} />
+                                </span>
+                            }
+                        }
+                    }),
+                    (system) => ({
+                        components: {
+                            OperationSummaryMethod: (props) => {
+                                console.log('daw', system, 'daw,', props)
+                                return <h1>Метод</h1>
+                            }
+                        }
+                    }),
+                    (system) => ({
+                        components: {
+                            JsonSchema_string: (props) => {
+                                console.log('daw,', props)
+                                return <input style={{border: "5px solid red"}} onInput={e => {
+                                    props.onChange(e.target.value, props.keyName)
+
+                                }}/>
+
+                            }
+                        }
+                    })
+
+                ]}/>
             }
             {
                 !isSuccess && error &&
